@@ -46,6 +46,7 @@ header a{
 
 main{
   grid-area: main;
+  text-emphasis-color: black;
   
 }
 
@@ -72,7 +73,7 @@ flex:1 20rem;
 .products{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   list-style-type: none;
   padding: 0%;
@@ -134,4 +135,15 @@ flex:1 20rem;
 }
 .product a:hover{
   color: #ffc000;
+}
+
+
+/* Filter components */
+.filterProducts{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding:1rem;
+  margin: 1rem;
+  border-bottom:.1rem #c0c0c0 solid;
 }
