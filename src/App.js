@@ -37,13 +37,22 @@ class App extends Component {
         });
     }
   }
+
+  removeFromCart=(product)=>{
+    const cartItems=this.state.cartItems.slice()    
+    this.setState({
+        cartItems:cartItems.filter((x)=>(x._id!==product._id))
+    })
+  }
+
   addToCart=(product)=>{
-    const cartItems=this.state.cartItems.slice()
+    let cartItems=this.state.cartItems.slice()
     let alreadyInCart=false
     cartItems.forEach((item) =>{
         if(product._id===item._id ){
             item.count++
             item.alreadyInCart=true
+            alreadyInCart=true
         }
         
     })
@@ -54,8 +63,7 @@ class App extends Component {
             count:1
         })
     }
-    this.setState({
-        ...this.state,
+    this.setState({        
         cartItems:cartItems,
     })
   }
@@ -98,7 +106,7 @@ class App extends Component {
             <Products productsList={this.state.products} addToCart={this.addToCart}/>
         </div>
         <div className="sidebar">
-          <Cart cartItems={this.state.cartItems}/>
+          <Cart cartItems={this.state.cartItems } removeFromCart={this.removeFromCart}/>
         </div>
       </div>
      </main>
