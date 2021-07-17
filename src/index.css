@@ -1,18 +1,21 @@
+@import url('//fonts.googleapis.com/css2?family=Montserrat&display=swap');
 html{
   font-size: 62.5%;
   box-sizing: border-box;
+  
 }
 body,
 #root{
   height: 100vh;
   margin: 0;
+
 }
 body,
 input,
 select,
 textarea{
   font-size: 1.6rem;
-  font-family:  Helvetica,Arial, sans-serif;
+  font-family: Montserrat, Helvetica, Arial,sans-serif;
 }
 
 a{
@@ -73,7 +76,7 @@ flex:1 20rem;
 .products{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   list-style-type: none;
   padding: 0%;
@@ -88,8 +91,8 @@ flex:1 20rem;
  .product{
    display: flex;
    flex-direction:column ;
-   justify-content: space-between;
-   align-items: flex-start;
+   justify-content: flex-start;
+   align-items: center;
    height: 100%;
  }
  .product img{
@@ -98,7 +101,7 @@ flex:1 20rem;
  }
  .product-price{
    display: flex;
-   justify-content:space-between;
+   justify-content:flex-start;
    align-items: center;
    
  }
@@ -109,7 +112,7 @@ flex:1 20rem;
    
  }
  .product-price div{
-   font-weight: bold;
+   /* font-weight: bold; */
    font-size: 2rem;
  }
 
@@ -141,9 +144,68 @@ flex:1 20rem;
 /* Filter components */
 .filterProducts{
   display: flex;
-  justify-content:space-between;
+  justify-content:space-around;
   align-items: center;
   padding:1rem;
   margin: 1rem;
   border-bottom:.1rem #c0c0c0 solid;
+}
+
+/* Cart Component */
+ .cart-header{
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: .1rem #c0c0c0 solid;
+  padding: .5rem;
+  margin: .5rem;
+}
+.sidecart{
+  margin: 2.5rem;
+}
+ ul li{
+  list-style: none;
+}
+.cart{
+  display: flex;
+}
+.right{
+  display: flex;
+  padding: .5rem;
+  margin: .5rem;
+  justify-content:center;
+  align-items: center;
+  /* font-weight: bold; */
+}
+.right div{
+  padding: .5rem;
+}
+
+.right button{
+  width: 10rem;
+  margin: .5rem;
+  padding: .5rem;
+}
+
+.cart-items img{
+  width: 5rem;
+}
+.cart-footer{
+  display: flex;
+  padding: .5rem;
+  margin: .5rem;
+  justify-content: center;
+  align-items: center;
+  
+}
+.cart-footer div{
+  padding: .5rem;
+}
+.cart-footer > div{
+  font-size: 2rem;
+}
+.cart-footer button{
+  
+  padding: .5rem;
+  margin: .5rem;
+  width: 10rem;
 }
