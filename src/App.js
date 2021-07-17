@@ -10,7 +10,7 @@ class App extends Component {
   constructor(){
     super()
     this.state={
-      cartItems:[],
+      cartItems:(JSON.parse(localStorage.getItem("cart")))?JSON.parse(localStorage.getItem("cart")):[],
       products:data.products,
       size:"",
       sort:"",
@@ -37,16 +37,17 @@ class App extends Component {
         });
     }
   }
-
+  
   removeFromCart=(product)=>{
     const cartItems=this.state.cartItems.slice()    
     this.setState({
         cartItems:cartItems.filter((x)=>(x._id!==product._id))
     })
+    localStorage.setItem("cart",JSON.stringify(cartItems.filter((x)=>(x._id!==product._id))))
   }
 
   addToCart=(product)=>{
-    let cartItems=this.state.cartItems.slice()
+    const cartItems=this.state.cartItems.slice()
     let alreadyInCart=false
     cartItems.forEach((item) =>{
         if(product._id===item._id ){
@@ -64,8 +65,10 @@ class App extends Component {
         })
     }
     this.setState({        
-        cartItems:cartItems,
-    })
+        cartItems:cartItems
+    })    
+    localStorage.setItem("cart",JSON.stringify(cartItems))
+    
   }
   sortProducts=(event)=>{
     console.log(event.target.value)
@@ -79,15 +82,15 @@ class App extends Component {
                  ((a.price > b.price)? 1: -1):
                  sort ==="highestToLowest"? 
                  ((a.price < b.price)? 1:-1):
-                 ((a._id<b._id)?1:-1 )
-
-
-            
+                 ((a._id<b._id)?1:-1 )            
         ))
-    })
-    
+    })}
 
-  }
+    createOrder=(order)=>{
+    alert("Save the Order named "+order.name)
+    
+    }
+
   render(){
   return (
    <div className='grid-container'>
@@ -106,13 +109,13 @@ class App extends Component {
             <Products productsList={this.state.products} addToCart={this.addToCart}/>
         </div>
         <div className="sidebar">
-          <Cart cartItems={this.state.cartItems } removeFromCart={this.removeFromCart}/>
+          <Cart cartItems={this.state.cartItems } removeFromCart={this.removeFromCart} createOrder={this.createOrder}/>
         </div>
       </div>
      </main>
      
      <footer>
-      All Rights Reserved
+      All Rights Reserved.
      </footer>
    </div>
   );
