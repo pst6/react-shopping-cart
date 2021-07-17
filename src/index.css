@@ -209,3 +209,18 @@ flex:1 20rem;
   margin: .5rem;
   width: 10rem;
 }
+
+.form-container{
+  padding: 1rem;
+  width: 100%;
+}
+.form-container li{
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  margin: .5rem;
+
+}
+.form-container input{
+  border: .1rem #c0c0c0 solid;
+}
