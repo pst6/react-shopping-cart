@@ -117,16 +117,19 @@ flex:1 20rem;
  }
 
 .button{
+  min-width: 6rem;
+  max-height: 5rem;
   padding: 1rem;
   border: 0.1rem #c0c0c0 solid;
   background-color: #f0f0f0;
   cursor: pointer;
 }
 .button:hover{
-  background-color: #ffc000;
+  
   border: 0.2rem #c0c0c0 solid;
 }
 .button.primary{
+  padding: 1rem;
   background-color: #ffc000;
 }
 
@@ -223,4 +226,35 @@ flex:1 20rem;
 }
 .form-container input{
   border: .1rem #c0c0c0 solid;
+}
+
+/* Modal */
+.closeBtn{
+  display: flex;
+  justify-content: flex-end;
+}
+.imageTitle{
+  display: flex; 
+  
+  
+}
+.imageTitle img{
+  width: 40rem;
+}
+.imageTitle div{
+  padding: 0rem;
+  margin: 0;
+  margin-right: 2rem;
+  
+   
+}
+.details{
+  display: flex;
+  flex-direction: column;
+}
+.priceBtn{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  
 }

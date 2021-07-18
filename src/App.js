@@ -6,6 +6,7 @@ import Filter from "./components/Filter"
 import Cart from "./components/Cart"
 
 
+
 class App extends Component {
   constructor(){
     super()
@@ -106,10 +107,14 @@ class App extends Component {
            filterProducts={this.filterProducts}
            sortProducts={this.sortProducts}
            />
+           
             <Products productsList={this.state.products} addToCart={this.addToCart}/>
+            
         </div>
         <div className="sidebar">
+            
           <Cart cartItems={this.state.cartItems } removeFromCart={this.removeFromCart} createOrder={this.createOrder}/>
+          
         </div>
       </div>
      </main>
