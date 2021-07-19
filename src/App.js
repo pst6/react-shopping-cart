@@ -6,6 +6,10 @@ import Filter from "./components/Filter"
 import Cart from "./components/Cart"
 
 
+// import store from './store'
+// import { Provider } from 'react-redux'
+
+
 
 class App extends Component {
   constructor(){
@@ -94,6 +98,7 @@ class App extends Component {
 
   render(){
   return (
+    
    <div className='grid-container'>
      <header>
       <a href='/'>React Shopping Cart</a>
