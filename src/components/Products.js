@@ -2,7 +2,10 @@
 import React, { Component } from 'react'
 import { Fade, Zoom } from 'react-reveal'
 import formatCurrency from "./utils"
-import Modal from "C:/Users/Priya.Tavarmani/Desktop/REACT-SHOPPING-CART/node_modules/react-modal/"
+import Modal from "C:/Users/Priya.Tavarmani/Desktop/REACT-SHOPPING-CART/node_modules/react-modal/";
+import store from "../store"
+// import {fetchProducts} from "../actions/productActions"
+
 
 
 class Products extends Component {
@@ -24,11 +27,14 @@ class Products extends Component {
         })
     }
     render() {
+        const productsList=store.getState().productReducer.initialState.products
         return (
             <div>
                 <ul className="products">
-                    
-                    {this.props.productsList.map((product)=>(
+                    {/* {store.subscribe(()=>console.log("hello"))} */}
+                    {/* {console.log("PRIYA---------------"+store.dispatch(fetchProducts))} */}
+                    {/* {console.log("PRIYA---------------"+store.getState().products.products.map((item)=>item._id))} */}
+                    {productsList.map((product)=>(
                         <Fade bottom cascade>
                         <li key={product._id}>
                             <div className="product">
