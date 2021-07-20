@@ -3,9 +3,8 @@ import React, { Component } from 'react'
 import { Fade, Zoom } from 'react-reveal'
 import formatCurrency from "./utils"
 import Modal from "C:/Users/Priya.Tavarmani/Desktop/REACT-SHOPPING-CART/node_modules/react-modal/";
-import store from "../store"
-// import {fetchProducts} from "../actions/productActions"
-
+import { connect } from 'react-redux';
+import {fetchProductlist} from "../actions/productActions"
 
 
 class Products extends Component {
@@ -14,6 +13,10 @@ class Products extends Component {
         this.state={
             is_product:null,
         }
+    }
+
+    componentDidMount(){
+        this.props.fetchProductlist();
     }
 
     openModal=(product)=>{
@@ -27,15 +30,13 @@ class Products extends Component {
         })
     }
     render() {
-        const productsList=store.getState().productReducer.initialState.products
         return (
             <div>
-                <ul className="products">
-                    {/* {store.subscribe(()=>console.log("hello"))} */}
-                    {/* {console.log("PRIYA---------------"+store.dispatch(fetchProducts))} */}
-                    {/* {console.log("PRIYA---------------"+store.getState().products.products.map((item)=>item._id))} */}
-                    {productsList.map((product)=>(
-                        <Fade bottom cascade>
+                <Fade bottom cascade>
+                    {!this.props.products?<div>Loading...</div>:
+                    <ul className="products">
+                    {this.props.products.map((product)=>(
+                        
                         <li key={product._id}>
                             <div className="product">
                             
@@ -52,12 +53,13 @@ class Products extends Component {
                             </div>
                             
                         </li>
-                        </Fade>  
+                        
                         
                     )                    
-                    )} 
-                     
-                </ul>
+                    )}                      
+                </ul>}
+                
+                </Fade> 
                 {this.state.is_product!==null &&
                                 (<Modal isOpen={true}>
                                 <div className="closeBtn">
@@ -91,4 +93,4 @@ class Products extends Component {
         )
     }
 }
-export default Products
+export default connect((state)=>({products:state.products.filteredItems}),{fetchProductlist})(Products)

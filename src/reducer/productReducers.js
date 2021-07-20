@@ -1,18 +1,32 @@
-import { FETCH_PRODUCTS } from "../types";
-import data from '../data.json'
+import { FETCH_PRODUCTS,FILTER_PRODUCTS_BY_SIZE,ORDER_PRODUCTS_BY_PRICE } from "../types";
 
-const initialState={
-    products:data.products,
-}
-const productReducer=(state={initialState},action)=>{
+
+
+export const productReducer=(state={},action)=>{
     switch (action.type) {
         case FETCH_PRODUCTS:
             return{
-                products:state.initialState
+                ...state,
+                items:action.payload,
+                filteredItems:action.payload
+            };
+        case FILTER_PRODUCTS_BY_SIZE:
+            return {
+                ...state,
+                filteredItems:action.payload.items,
+                
+
+        }
+        case ORDER_PRODUCTS_BY_PRICE:
+            return{
+                ...state,
+                
+                filteredItems:action.payload.items
             }
+        
     
         default:
             return state;
     }
 }
-export default productReducer
+
