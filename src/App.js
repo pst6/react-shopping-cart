@@ -4,10 +4,9 @@ import data from './data.json'
 import Products from "./components/Products"
 import Filter from "./components/Filter"
 import Cart from "./components/Cart"
+import { Provider } from 'react-redux'
+import store from './store'
 
-
-// import store from './store'
-// import { Provider } from 'react-redux'
 
 
 
@@ -23,25 +22,7 @@ class App extends Component {
     }
     //this.filterProducts=this.filterProducts.bind(this)
   }
-  filterProducts=(event)=>{
-     console.log(event.target.value)
-     if(event.target.value===""){
-        this.setState({
-            
-            products:data.products,
-            size:"",
-            sort:""
-        })
-     }
-     else{
-        this.setState({
-            ...this.state,
-            size: event.target.value,
-            products: data.products.filter(
-                (product)=>product.availableSizes.indexOf(event.target.value)>=0)
-        });
-    }
-  }
+  
   
   removeFromCart=(product)=>{
     const cartItems=this.state.cartItems.slice()    
@@ -75,21 +56,7 @@ class App extends Component {
     localStorage.setItem("cart",JSON.stringify(cartItems))
     
   }
-  sortProducts=(event)=>{
-    console.log(event.target.value)
-    const sort=event.target.value;
-    // console.log(event.target.getAttribute("pp"))
-    this.setState({
-        sort:sort,
-        products:this.state.products.slice().sort((a,b)=>(
-            
-                 sort === "lowestToHighest"?
-                 ((a.price > b.price)? 1: -1):
-                 sort ==="highestToLowest"? 
-                 ((a.price < b.price)? 1:-1):
-                 ((a._id<b._id)?1:-1 )            
-        ))
-    })}
+  
 
     createOrder=(order)=>{
     alert("Save the Order named "+order.name)
@@ -98,7 +65,7 @@ class App extends Component {
 
   render(){
   return (
-    
+    <Provider store={store}>
    <div className='grid-container'>
      <header>
       <a href='/'>React Shopping Cart</a>
@@ -106,14 +73,9 @@ class App extends Component {
      <main>
       <div className="content">
         <div className="main">
-           <Filter count={this.state.products.length}
-           size={this.state.size}
-           sort={this.state.sort}
-           filterProducts={this.filterProducts}
-           sortProducts={this.sortProducts}
-           />
+           <Filter />
            
-            <Products productsList={this.state.products} addToCart={this.addToCart}/>
+            <Products addToCart={this.addToCart}/>
             
         </div>
         <div className="sidebar">
@@ -128,6 +90,7 @@ class App extends Component {
       All Rights Reserved.
      </footer>
    </div>
+   </Provider>
   );
 }
 }
